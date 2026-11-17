@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Facts from '../components/Facts.astro';
+import { site } from '../data/site';
+import { releasedGames } from '../lib/games';
+---
+<Base title="Press" description="Facts, pictures and contact details for writing about Little Brains and its games.">
+  <section class="page-head">
+    <div class="narrow">
+      <p class="eyebrow">Press</p>
+      <h1>Writing about us?</h1>
+      <p class="lede">Here are the facts. For pictures, review access or an interview, email <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:24px">
+    <div class="narrow">
+      <h2 style="font-size: clamp(30px, 4vw, 44px)">Little Brains</h2>
+      <p class="muted" style="margin-top:12px">An independent UK studio making entertaining, engaging and challenging games for children on iPhone and iPad. Founded {site.founded}. No ads, no tracking and no accounts in any of its games.</p>
+      {releasedGames.map((g) => (
+        <>
+          <h2 style="font-size: clamp(30px, 4vw, 44px); margin-top:56px">{g.storeName}</h2>
+          <p class="muted" style="margin:12px 0 20px">{g.summary}</p>
+          {g.facts && <Facts facts={g.facts} />}
+          {g.art && <p style="margin-top:20px"><a href={`${g.art.base}-1024.jpg`} download>Download the game's picture (JPEG)</a></p>}
+        </>
+      ))}
+      <p class="muted" style="margin-top:40px">Please use the App Store name in full the first time you mention a game.</p>
+    </div>
+  </section>
+</Base>

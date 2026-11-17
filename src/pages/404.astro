@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import { piecePath } from '../lib/jigsaw';
+const d = piecePath(120, [1, -1, 1, -1], 4);
+---
+<Base title="Page not found" noindex>
+  <section class="section">
+    <div class="narrow" style="text-align:center">
+      <svg viewBox="-30 -30 180 180" width="180" height="180" style="margin:0 auto 28px" aria-hidden="true">
+        <path d={d} fill="#EDE1CC" stroke="#2B2340" stroke-width="3" stroke-dasharray="8 7" />
+      </svg>
+      <h1 style="font-size: clamp(44px, 7vw, 80px)">Oh. A piece is missing.</h1>
+      <p class="lede" style="margin:18px auto 28px">We can't find that page. It may have moved, or the link might have a typo.</p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn btn-ink" href="/">Back to the shelf</a>
+        <a class="btn btn-line" href="/support/">Get help</a>
+      </div>
+    </div>
+  </section>
+</Base>

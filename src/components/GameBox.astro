@@ -1,0 +1,30 @@
+---
+import type { Game } from '../lib/games';
+import { gameUrl } from '../lib/games';
+import Art from './Art.astro';
+import Cuts from './Cuts.astro';
+interface Props { game: Game; eager?: boolean }
+const { game, eager = false } = Astro.props;
+---
+{game.status === 'released' ? (
+  <a class="box box-game" href={gameUrl(game)} style={`--accent:${game.accent}`}>
+    <div class="box-art">
+      {game.art && <Art base={game.art.base} alt={game.art.alt} sizes="330px" eager={eager} decorative />}
+      <Cuts n={12} w={290} h={214} seed={3} />
+    </div>
+    <div class="box-band">
+      <span class="name">{game.name}</span>
+      {game.ages && <span class="pill">Ages {game.ages}</span>}
+    </div>
+    {game.roundel && (
+      <div class="roundel" aria-hidden="true"><span class="big">{game.roundel.big}</span><span class="small">{game.roundel.small}</span></div>
+    )}
+    <span class="visually-hidden">{game.tagline}</span>
+  </a>
+) : (
+  <div class="box box-soon" style={`--box-accent:${game.accent}`} role="img" aria-label="A new game, coming soon">
+    <div class="tape"></div>
+    <div class="q" aria-hidden="true">?</div>
+    <div class="stamp" aria-hidden="true">Coming soon</div>
+  </div>
+)}

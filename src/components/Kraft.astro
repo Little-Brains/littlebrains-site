@@ -1,0 +1,14 @@
+---
+// The kraft "back of the box" panel, with an interlocking top edge.
+import { edgePath } from '../lib/jigsaw';
+interface Props { id?: string }
+const { id } = Astro.props;
+// Wide enough for big screens; on narrow ones the edge is cropped, not squashed.
+const d = edgePath(2400, 90, 12, 60);
+---
+<section class="kraft section" id={id}>
+  <svg class="kraft-edge" viewBox="0 0 2400 90" preserveAspectRatio="xMinYMax slice" aria-hidden="true"><path d={d} fill="currentColor" /></svg>
+  <div class="wrap kraft-inner">
+    <slot />
+  </div>
+</section>

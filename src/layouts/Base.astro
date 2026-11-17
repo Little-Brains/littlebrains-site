@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import { site, nav, footerNav } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  accent?: string;
+  accentDeep?: string;
+  cta?: { href: string; label: string };
+  image?: string;
+  noindex?: boolean;
+}
+const { title, description = site.description, accent, accentDeep, cta = { href: '/#shelf', label: 'See the games' }, image = '/og.png', noindex = false } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name}: ${site.tagline.replace(/\.$/, '')}`;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const path = Astro.url.pathname;
+const style = [accent && `--accent:${accent}`, accentDeep && `--accent-deep:${accentDeep}`].filter(Boolean).join(';');
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#FAF5EC" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(image, site.url).href} />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <slot name="head" />
+  </head>
+  <body style={style || undefined}>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="wordmark" href="/" aria-label="Little Brains, home">Little Brains<span class="dot" aria-hidden="true"></span></a>
+        <nav class="site-nav" aria-label="Main">
+          {nav.map((n) => <a href={n.href} aria-current={path === n.href ? 'page' : undefined}>{n.label}</a>)}
+        </nav>
+        <a class="btn btn-ink" href={cta.href}>{cta.label}</a>
+        <details class="menu">
+          <summary>Menu</summary>
+          <nav class="menu-panel" aria-label="Main">
+            {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+            <a href={cta.href}>{cta.label}</a>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-top">
+          <a class="wordmark" href="/">Little Brains<span class="dot" aria-hidden="true"></span></a>
+          <ul class="footer-nav">
+            {footerNav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+            <li><a href={`mailto:${site.email}`}>Email us</a></li>
+          </ul>
+        </div>
+        <div class="footer-legal">
+          <p>
+            Little Brains is run by {site.owner}{site.address && <>, {site.address}</>}.
+            {' '}Email: <a href={`mailto:${site.email}`}>{site.email}</a>.
+          </p>
+          <p>Apple, the Apple logo, iPhone and iPad are trademarks of Apple Inc., registered in the U.S. and other countries and regions. App Store is a service mark of Apple Inc.</p>
+          <p>© {year} {site.name}. No cookies, no analytics, no tracking on this website.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import { site } from '../data/site';
+import { releasedGames, faqGroups } from '../lib/games';
+
+const studio = [
+  {
+    id: 'contact', group: 'Studio', q: 'How do I contact you?',
+    a: `Email <a href="mailto:${site.email}">${site.email}</a>. We aim to reply within ${site.replyTime}. Telling us which game, device and iOS version you're using helps us answer faster.`,
+  },
+  {
+    id: 'ads-tracking', group: 'Studio', q: 'Do your games have ads or tracking?',
+    a: 'No. Our games have no ads, no third-party analytics and no tracking, and they don\'t ask for accounts or personal details. See our <a href="/privacy/">privacy policy</a>.',
+  },
+  {
+    id: 'accounts', group: 'Studio', q: 'Do we need an account?',
+    a: 'No. You download a game from the App Store and play. Purchases go through your Apple Account, which we never see.',
+  },
+  {
+    id: 'idea', group: 'Studio', q: 'Can we suggest a game or a picture?',
+    a: `Please do. Ideas from families shape what goes on the shelf next. Email <a href="mailto:${site.email}">${site.email}</a>.`,
+  },
+];
+---
+<Base title="Support" description="Help with Little Brains games: getting started, saving, buying and restoring, gifts, the grown-ups' gate and privacy.">
+  <section class="page-head">
+    <div class="narrow">
+      <p class="eyebrow">Help</p>
+      <h1>Support</h1>
+      <p class="lede">Answers to the questions families ask most. Can't find yours? Email <a href={`mailto:${site.email}`}>{site.email}</a> and we'll reply within {site.replyTime}.</p>
+      <nav class="toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <ol>
+          <li><a href="#studio">All our games</a></li>
+          {releasedGames.map((g) => <li><a href={`#${g.slug}`}>{g.name}</a></li>)}
+          <li><a href="#contact-us">Contact us</a></li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:24px">
+    <div class="narrow">
+      <h2 id="studio" style="font-size: clamp(30px, 4vw, 44px)">All our games</h2>
+      <div style="margin-top:20px"><Faq items={studio} /></div>
+
+      {releasedGames.map((g) => (
+        <>
+          <h2 id={g.slug} style="font-size: clamp(30px, 4vw, 44px); margin-top:72px">{g.name}</h2>
+          <p class="muted" style="margin-top:10px">{g.storeName}, for iPhone and iPad. <a href={`/games/${g.slug}/`}>About the game</a> · <a href={`/privacy/#${g.slug}`}>Privacy details</a></p>
+          {faqGroups(g).map((grp) => (
+            <>
+              <h3 class="faq-group">{grp.group}</h3>
+              <Faq items={grp.items} prefix={`${g.slug}-`} />
+            </>
+          ))}
+        </>
+      ))}
+
+      <h2 id="contact-us" style="font-size: clamp(30px, 4vw, 44px); margin-top:72px">Contact us</h2>
+      <div class="summary-box">
+        <p><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p>We aim to reply within {site.replyTime}. Please don't include your child's name or other personal details about them; we don't need them to help.</p>
+        <p><strong>Refunds</strong> are handled by Apple at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

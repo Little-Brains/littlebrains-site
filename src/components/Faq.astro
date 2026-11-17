@@ -1,0 +1,25 @@
+---
+import type { Faq } from '../lib/games';
+interface Props { items: Faq[]; prefix?: string; level?: 'h3' | 'h4' }
+const { items, prefix = '' } = Astro.props;
+---
+<div class="faq">
+  {items.map((f) => (
+    <details id={prefix + f.id}>
+      <summary>{f.q}</summary>
+      <div class="answer"><p set:html={f.a} /></div>
+    </details>
+  ))}
+</div>
+
+<script>
+  // Opening a link like /support/#restore unfolds that answer.
+  function openFromHash() {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el instanceof HTMLDetailsElement) { el.open = true; el.scrollIntoView(); }
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+</script>

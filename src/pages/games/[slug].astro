@@ -1,0 +1,157 @@
+---
+import Base from '../../layouts/Base.astro';
+import Art from '../../components/Art.astro';
+import Cuts from '../../components/Cuts.astro';
+import Kraft from '../../components/Kraft.astro';
+import Facts from '../../components/Facts.astro';
+import Faq from '../../components/Faq.astro';
+import Shelf from '../../components/Shelf.astro';
+import AppStoreButton from '../../components/AppStoreButton.astro';
+import { releasedGames, appStoreUrl, type Game } from '../../lib/games';
+
+export function getStaticPaths() {
+  return releasedGames.map((game) => ({ params: { slug: game.slug }, props: { game } }));
+}
+const { game } = Astro.props as { game: Game };
+const top = (game.topQuestions ?? []).map((id) => game.faq!.find((f) => f.id === id)!).filter(Boolean);
+const ctaHref = appStoreUrl(game, 'header') ?? '#get';
+const shortcuts = [2, 4, 12, 24, 48, 100];
+---
+<Base
+  title={game.name}
+  description={`${game.storeName}: ${game.summary} For ages ${game.ages}, on iPhone and iPad. No ads, no tracking.`}
+  accent={game.accent}
+  accentDeep={game.accentDeep}
+  cta={{ href: ctaHref, label: `Get ${game.name}` }}
+>
+  <section class="game-hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Little Brains</p>
+        <h1>{game.name}</h1>
+        <p class="lede">{game.tagline}</p>
+        <p class="muted" style="margin-top:12px; max-width:44ch">{game.summary}</p>
+        <div class="btn-row" id="get">
+          <AppStoreButton game={game} campaign="hero" />
+        </div>
+        <p class="micro">{game.priceLine}</p>
+      </div>
+      <div class="lid-col">
+        <div class="lid">
+          <div class="art">
+            {game.art && <Art base={game.art.base} alt={game.art.alt} sizes="(max-width: 860px) 90vw, 520px" eager />}
+            <Cuts n={16} w={300} h={300} seed={11} />
+          </div>
+        </div>
+        {game.roundel && <div class="roundel" aria-hidden="true"><span class="big">{game.roundel.big}</span><span class="small">{game.roundel.small}</span></div>}
+        {game.ages && <span class="pill ages">Ages {game.ages}</span>}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="recut-title" style="padding-top: clamp(32px, 5vw, 64px)">
+    <div class="wrap recut">
+      <div class="recut-board">
+        <div class="art">
+          {game.art && <Art base={game.art.base} alt={game.art.alt} sizes="(max-width: 860px) 90vw, 620px" />}
+          <Cuts id="recut-cuts" n={24} w={300} h={300} seed={5} />
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Try it</p>
+        <h2 id="recut-title">Pick any number.</h2>
+        <p class="muted" style="margin-top:16px">Most jigsaw apps offer a few set sizes. {game.name} cuts the picture into exactly the number you choose, from 2 to 100, with real interlocking pieces. Awkward numbers like 7, 13 and 97 work too.</p>
+        <p aria-live="polite" style="margin:20px 0 0">
+          <output id="recut-count" class="count" for="recut-range">24</output>
+          <span class="count-label">pieces</span>
+        </p>
+        <label for="recut-range" class="visually-hidden">Number of pieces</label>
+        <input id="recut-range" class="range" type="range" min="2" max="100" step="1" value="24" />
+        <div class="range-ends" aria-hidden="true"><span>2</span><span>100</span></div>
+        <div class="chips" role="group" aria-label="Shortcuts">
+          {shortcuts.map((n) => <button type="button" class="chip" data-n={n} aria-pressed={n === 24 ? 'true' : 'false'}>{n}</button>)}
+        </div>
+        <button type="button" class="btn btn-line" id="recut-again">Cut it again</button>
+        <p class="muted" style="font-size:15px; margin-top:16px">A preview of how the picture is cut. In the game, every piece snaps only to its real neighbours.</p>
+      </div>
+    </div>
+  </section>
+
+  {game.steps && (
+    <section class="section" aria-labelledby="how-title" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">How it plays</p>
+          <h2 id="how-title">Picture, pieces, play.</h2>
+        </div>
+        <ol class="steps">
+          {game.steps.map((s) => <li><h3>{s.title}</h3><p class="muted" style="margin:10px 0 0">{s.text}</p></li>)}
+        </ol>
+        {game.helpers && (
+          <>
+            <h3 style="margin-top:44px">Helpers grown-ups can switch on</h3>
+            <ul class="helpers">{game.helpers.map((h) => <li>{h}</li>)}</ul>
+          </>
+        )}
+      </div>
+    </section>
+  )}
+
+  <Kraft id="grown-ups">
+    <div>
+      <p class="eyebrow">For grown-ups</p>
+      <h2>Before you download</h2>
+      <p class="muted" style="margin-top:16px">Everything you'd want to check before handing it over.</p>
+      {game.accessibility && <p class="muted"><strong>Accessibility:</strong> {game.accessibility}</p>}
+      <p class="muted">Read the <a href={`/privacy/#${game.slug}`}>privacy details</a> and <a href={`/support/#${game.slug}`}>help for {game.name}</a>.</p>
+    </div>
+    {game.facts && <Facts facts={game.facts} />}
+  </Kraft>
+
+  {top.length > 0 && (
+    <section class="section" aria-labelledby="q-title">
+      <div class="narrow">
+        <p class="eyebrow">Questions</p>
+        <h2 id="q-title">The ones parents ask first.</h2>
+        <div style="margin-top:28px"><Faq items={top} prefix="q-" /></div>
+        <p style="margin-top:24px"><a href={`/support/#${game.slug}`}>All {game.name} questions</a></p>
+      </div>
+    </section>
+  )}
+
+  <section class="section" style="padding-top:0" aria-labelledby="more-title">
+    <div class="wrap">
+      <p class="eyebrow">More from the shelf</p>
+      <h2 id="more-title" style="font-size: clamp(30px, 4vw, 44px)">More games are on the way.</h2>
+      <Shelf exclude={game.slug} heading="More from the shelf" />
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { cutPath } from '../../lib/jigsaw';
+
+  const range = document.getElementById('recut-range') as HTMLInputElement | null;
+  const out = document.getElementById('recut-count') as HTMLOutputElement | null;
+  const svg = document.getElementById('recut-cuts');
+  const again = document.getElementById('recut-again');
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('.chip[data-n]')];
+
+  if (range && out && svg) {
+    const paths = svg.querySelectorAll('path');
+    let seed = 5;
+    let frame = 0;
+    const draw = () => {
+      const n = Number(range.value);
+      const d = cutPath(n, 300, 300, seed);
+      paths.forEach((p) => p.setAttribute('d', d));
+      out.value = String(n);
+      out.textContent = String(n);
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(Number(c.dataset.n) === n)));
+    };
+    const schedule = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(draw); };
+    range.addEventListener('input', schedule);
+    chips.forEach((c) => c.addEventListener('click', () => { range.value = c.dataset.n!; schedule(); }));
+    again?.addEventListener('click', () => { seed = Math.floor(Math.random() * 1e6) + 1; schedule(); });
+  }
+</script>

@@ -1,0 +1,17 @@
+---
+import { allGames } from '../lib/games';
+import GameBox from './GameBox.astro';
+interface Props { exclude?: string; heading?: string }
+const { exclude, heading = 'On the shelf' } = Astro.props;
+const games = allGames.filter((g) => g.slug !== exclude);
+---
+<section class="shelf" id="shelf" aria-labelledby="shelf-title">
+  <h2 id="shelf-title" class="visually-hidden">{heading}</h2>
+  <div class="shelf-back">
+    <div class="shelf-row">
+      {games.map((g, i) => <GameBox game={g} eager={i === 0} />)}
+    </div>
+    <div class="plank"></div>
+  </div>
+  <p class="shelf-hint muted">Swipe for more games.</p>
+</section>

@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import Shelf from '../../components/Shelf.astro';
+import { releasedGames, gameUrl } from '../../lib/games';
+---
+<Base title="Games" description="Every Little Brains game for iPhone and iPad, with more on the way.">
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">The shelf</p>
+      <h1>Our games</h1>
+      <p class="lede">Every Little Brains game in one place. New games join the shelf as they're ready.</p>
+      <Shelf />
+    </div>
+  </section>
+  <section class="section" style="padding-top:24px">
+    <div class="wrap trio">
+      {releasedGames.map((g) => (
+        <article class="card" style={`--accent:${g.accent}`}>
+          <div class="dot" style="background: var(--accent)"></div>
+          <h2 style="font-size:32px">{g.name}</h2>
+          <p class="muted" style="margin-top:10px">{g.tagline} Ages {g.ages}.</p>
+          <a class="btn btn-line" href={gameUrl(g)}>See the game</a>
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>

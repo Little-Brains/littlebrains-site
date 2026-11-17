@@ -1,0 +1,10 @@
+---
+// A game's lid art at a few sizes, WebP with a JPEG fallback.
+interface Props { base: string; alt: string; sizes: string; eager?: boolean; decorative?: boolean }
+const { base, alt, sizes, eager = false, decorative = false } = Astro.props;
+---
+<picture>
+  <source type="image/webp" srcset={`${base}-360.webp 360w, ${base}-640.webp 640w, ${base}-1024.webp 1024w`} sizes={sizes} />
+  <img src={`${base}-1024.jpg`} alt={decorative ? '' : alt} width="1024" height="1024"
+    loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : undefined} />
+</picture>

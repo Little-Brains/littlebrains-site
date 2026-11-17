@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+import { releasedGames } from '../lib/games';
+const addr = site.address;
+---
+<Base title="Privacy policy" description="How Little Brains games and littlebrains.co handle personal data. In short: our games collect nothing, and this website uses no cookies or analytics.">
+  <section class="page-head">
+    <div class="narrow">
+      <p class="eyebrow">Privacy</p>
+      <h1>Privacy policy</h1>
+      <p class="lede">Last updated {site.legalUpdated}.</p>
+    </div>
+  </section>
+
+  <section style="padding-bottom: 96px">
+    <div class="narrow prose">
+      <div class="summary-box">
+        <p><strong>The short version</strong></p>
+        <ul>
+          <li>Our games don't collect, store or share any personal information. No ads, no analytics, no tracking, no accounts.</li>
+          <li>What a game saves, such as puzzle progress and settings, stays on your device. We never receive it.</li>
+          <li>Payments go through Apple. We never see your name, email or payment details.</li>
+          <li>This website uses no cookies and no analytics. Our host, GitHub, keeps security logs of visitors' IP addresses.</li>
+          <li>If you email us, we use your message only to reply.</li>
+          <li>If we ever change any of this, for example by adding ads or analytics to a game, we'll update this policy and the App Store privacy label first.</li>
+        </ul>
+      </div>
+
+      <nav class="toc" aria-label="Contents">
+        <strong>Contents</strong>
+        <ol>
+          <li><a href="#who-we-are">Who we are</a></li>
+          <li><a href="#our-games">Our games</a>{releasedGames.map((g) => <>, <a href={`#${g.slug}`}>{g.name}</a></>)}</li>
+          <li><a href="#purchases">Purchases</a></li>
+          <li><a href="#children">Children</a></li>
+          <li><a href="#website">This website</a></li>
+          <li><a href="#emails">When you email us</a></li>
+          <li><a href="#your-rights">Your rights</a></li>
+          <li><a href="#changes">Changes</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="who-we-are">1. Who we are</h2>
+      <p>Little Brains is run by {site.owner}, in {site.country} ("we", "us"). We make the Little Brains games for iPhone and iPad and run this website, littlebrains.co. For the small amount of personal data described below (mainly emails you send us), we are the data controller under UK data protection law.</p>
+      <p>
+        Contact: <a href={`mailto:${site.email}`}>{site.email}</a>
+        {addr && <><br />Address: {addr}</>}
+      </p>
+
+      <h2 id="our-games">2. Our games</h2>
+      <p>This applies to every Little Brains game unless the game's own section below says otherwise.</p>
+      <ul>
+        <li><strong>No personal information.</strong> Our games don't ask for or collect names, email addresses, photos, location, contacts or any other personal information.</li>
+        <li><strong>No accounts.</strong> There's nothing to sign up for.</li>
+        <li><strong>No ads, analytics or tracking.</strong> Our games contain no advertising, no third-party analytics and no third-party software development kits that collect data. We don't track anyone across apps or websites.</li>
+        <li><strong>On the device only.</strong> Game progress and settings are saved on your iPhone or iPad. They aren't sent to us or to anyone else, and we can't see them.</li>
+        <li><strong>Deleting.</strong> Deleting a game from your device deletes everything it saved. Because we hold no copy, there's nothing for us to delete on our side.</li>
+      </ul>
+      <p><strong>Crash reports from Apple.</strong> If you've chosen to share analytics with app developers in your device's settings (Settings › Privacy & Security › Analytics & Improvements), Apple may share crash reports and basic usage statistics with us. Apple provides these without identifying you, and we use them only to fix problems. You can turn this off at any time in the same place.</p>
+
+      {releasedGames.map((g) => (
+        <>
+          <h3 id={g.slug} style="scroll-margin-top:100px">{g.storeName}</h3>
+          <p>{g.name} saves the following on the device, and only on the device:</p>
+          <ul>{g.privacy?.stored.map((s) => <li>{s}</li>)}</ul>
+          {g.privacy?.notes.map((n) => <p>{n}</p>)}
+          <p>On the App Store, the app's privacy label reads <strong>Data Not Collected</strong>.</p>
+        </>
+      ))}
+
+      <h2 id="purchases">3. Purchases</h2>
+      <p>In-app purchases are made through Apple's App Store. Apple processes the payment and holds your purchase history under its own <a href="https://www.apple.com/legal/privacy/">privacy policy</a>. We receive sales reports from Apple that don't identify who bought anything; we never receive your name, email address or payment details. The app checks whether a purchase has been made using Apple's StoreKit, on the device.</p>
+
+      <h2 id="children">4. Children</h2>
+      <p>Our games are made for children, so we've designed them to collect nothing at all. Because no personal information is collected from children, there's nothing that needs a parent's consent and nothing to request or delete.</p>
+      <p>Anything in a game that's meant for grown-ups (settings, purchases and any link that leaves the game) sits behind a grown-ups' gate: a question a young child is unlikely to answer. We follow the UK Information Commissioner's Age Appropriate Design Code by keeping privacy settings high by default and not collecting data in the first place.</p>
+      <p>Parents in the United States: because our games collect no personal information from children, there is nothing that needs parental consent under the Children's Online Privacy Protection Act (COPPA).</p>
+      <p>Please don't include your child's personal details if you email us. If a child emails us, we'll reply only to say that a grown-up should get in touch, and then delete the message.</p>
+
+      <h2 id="website">5. This website</h2>
+      <ul>
+        <li><strong>No cookies, no analytics.</strong> littlebrains.co doesn't set cookies or use any analytics, advertising or social media trackers.</li>
+        <li><strong>No third-party requests.</strong> Fonts and images are served from this website itself, so your browser doesn't contact other companies when you visit. Links to the App Store take you to Apple's website, which has its own privacy policy.</li>
+        <li><strong>Hosting.</strong> The website is hosted by GitHub Pages, a service of GitHub, Inc. When you visit, GitHub logs your IP address and keeps it for security purposes, whether or not you have a GitHub account. We don't receive or see these logs. GitHub explains how it handles this data in the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub General Privacy Statement</a>.</li>
+      </ul>
+
+      <h2 id="emails">6. When you email us</h2>
+      <p>If you email us, we receive your email address, your name if you include it, and whatever you write. We use it only to reply and to help with your question. Our lawful basis is our legitimate interest in answering you.</p>
+      <ul>
+        <li>Our email is provided by Google (Gmail), which stores messages on our behalf and may process them outside the UK under its own safeguards.</li>
+        <li>We don't add you to any mailing list, and we don't share your email with anyone else.</li>
+        <li>We delete support emails within 24 months of the last message, unless we need to keep one longer for a legal reason.</li>
+      </ul>
+
+      <h2 id="your-rights">7. Your rights</h2>
+      <p>Under UK data protection law you can ask to see the personal data we hold about you, have it corrected or deleted, restrict or object to how we use it, and receive a copy of it. In practice, the only personal data we hold is emails you've sent us. To make a request, email <a href={`mailto:${site.email}`}>{site.email}</a>; we'll respond within one month.</p>
+      <p>If you're unhappy with how we've handled your data, please tell us first. You can also complain to the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk</a> or on 0303 123 1113.</p>
+
+      <h2 id="changes">8. Changes to this policy</h2>
+      <p>We may change how our games and this website work in future. That could include adding advertising, analytics or other features that collect or use data. If we do:</p>
+      <ul>
+        <li>we'll update this policy, and the game's App Store privacy label, before the version with the change is released;</li>
+        <li>we'll say what has changed at the top of this page and update the date;</li>
+        <li>anything we add will follow UK data protection law, the ICO's Children's Code and Apple's rules for children's apps, and we'll ask for permission where the law requires it.</li>
+      </ul>
+      <p>A change only applies to versions released after it. It never applies to anything collected before.</p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import Shelf from '../components/Shelf.astro';
+import Promise from '../components/Promise.astro';
+import Kraft from '../components/Kraft.astro';
+import Facts from '../components/Facts.astro';
+import { site } from '../data/site';
+
+const studioFacts = [
+  { label: 'Ads', value: 'None' },
+  { label: 'Accounts', value: 'None needed' },
+  { label: 'Tracking', value: 'None' },
+  { label: 'Data we collect', value: 'None from our games' },
+  { label: 'Devices', value: 'iPhone and iPad' },
+  { label: 'Ages', value: 'Shown for each game' },
+  { label: 'Price', value: 'Shown for each game, before you pay' },
+  { label: "Grown-ups' gate", value: 'On settings and purchases' },
+];
+---
+<Base>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">A little games studio</p>
+      <h1>Games for little brains.</h1>
+      <p class="lede">Entertaining, engaging and challenging games for children, on iPhone and iPad.</p>
+      <div class="btn-row">
+        <a class="btn btn-ink" href="#shelf">See the games</a>
+        <a class="btn btn-line" href="#grown-ups">For grown-ups</a>
+      </div>
+      <Shelf />
+      <Promise />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="what-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What we make</p>
+        <h2 id="what-title">Three words behind every game.</h2>
+      </div>
+      <div class="trio">
+        <article class="card">
+          <div class="dot" style="background: var(--tomato)"></div>
+          <h3>Entertaining</h3>
+          <p class="muted">Games children choose to come back to because they're fun, not because of streaks, timers or rewards that nag.</p>
+        </article>
+        <article class="card">
+          <div class="dot" style="background: var(--marigold)"></div>
+          <h3>Engaging</h3>
+          <p class="muted">Calm, focused play with nothing in the way: no ads, no pop-ups and no buttons that lead out of the game.</p>
+        </article>
+        <article class="card">
+          <div class="dot" style="background: var(--sage)"></div>
+          <h3>Challenging</h3>
+          <p class="muted">Difficulty you set, so the challenge fits the child in front of it, from their first go to their hundredth.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <Kraft id="grown-ups">
+    <div>
+      <p class="eyebrow">For grown-ups</p>
+      <h2>What every game promises</h2>
+      <p class="muted" style="margin-top:16px">The same promise on every Little Brains game. Each game's page has its own details, and our <a href="/privacy/">privacy policy</a> spells out exactly what happens to data (in short: nothing leaves the device).</p>
+    </div>
+    <Facts facts={studioFacts} />
+  </Kraft>
+
+  <section class="section" aria-labelledby="who-title">
+    <div class="narrow">
+      <p class="eyebrow">Who we are</p>
+      <h2 id="who-title">A small studio in the UK.</h2>
+      <p class="lede" style="margin-top:16px">Little Brains is an independent studio started in {site.founded}. Every game is designed, built and tested here, and the first one is Jigsaw Puzzles, with more on the shelf to come.</p>
+      <p>Questions, ideas or something not working? <a href={`mailto:${site.email}`}>Email us</a>, or read the <a href="/support/">help pages</a>. We aim to reply within {site.replyTime}.</p>
+    </div>
+  </section>
+</Base>

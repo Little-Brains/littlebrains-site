@@ -1,0 +1,26 @@
+---
+// Official "Download on the App Store" badge, linked with a campaign name.
+// Apple's badge must be the one from Apple's Marketing Tools, unaltered:
+// save it as public/badges/download-on-the-app-store.svg. Until the app has an
+// App Store ID, a plain "coming soon" note shows instead (no badge).
+import fs from 'node:fs';
+import path from 'node:path';
+import type { Game } from '../lib/games';
+import { appStoreUrl } from '../lib/games';
+interface Props { game: Game; campaign: string }
+const { game, campaign } = Astro.props;
+const href = appStoreUrl(game, campaign);
+const badgeFile = 'badges/download-on-the-app-store.svg';
+const hasBadge = fs.existsSync(path.join(process.cwd(), 'public', badgeFile));
+---
+{href ? (
+  hasBadge ? (
+    <a class="app-store" href={href} rel="noopener">
+      <img src={`/${badgeFile}`} alt={`Download ${game.name} on the App Store`} width="168" height="56" />
+    </a>
+  ) : (
+    <a class="btn btn-ink" href={href} rel="noopener">Get {game.name} on the App Store</a>
+  )
+) : (
+  <span class="soon-note">Coming soon to the App Store</span>
+)}

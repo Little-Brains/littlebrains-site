@@ -1,0 +1,172 @@
+{
+  "slug": "jigsaw-puzzles",
+  "order": 1,
+  "status": "released",
+  "name": "Jigsaw Puzzles",
+  "storeName": "Little Brains: Jigsaw Puzzles",
+  "tagline": "From 2 pieces to 100, and every number in between.",
+  "summary": "Pick a picture, choose any number of pieces from 2 to 100, and get a proper interlocking jigsaw, cut fresh every time.",
+  "ages": "3+",
+  "accent": "#E4644A",
+  "accentDeep": "#B8432B",
+  "roundel": { "big": "2–100", "small": "pieces" },
+  "art": {
+    "base": "/images/games/jigsaw-puzzles/fox",
+    "alt": "A smiling cartoon fox sitting in a meadow of pink and orange flowers at sunset, cut into jigsaw pieces"
+  },
+  "appStoreId": "",
+  "bundleId": "co.littlebrains.jigsaw",
+  "priceLine": "Free to try · One-time unlock · No ads",
+  "steps": [
+    { "title": "Pick a picture", "text": "Every picture is made for this game. A few are free; the rest come with the one-time unlock." },
+    { "title": "Choose your pieces", "text": "Slide to any number from 2 to 100, or tap a shortcut. Two pieces for a first puzzle, 100 for a proper challenge." },
+    { "title": "Play, then cut it again", "text": "Pieces snap to their real neighbours. Finish, and the same picture can be cut into a brand-new puzzle." }
+  ],
+  "helpers": [
+    "Picture guide on the board",
+    "Piece outlines",
+    "Edge pieces first",
+    "Snap pieces into place",
+    "Return pieces that don't fit",
+    "Peek at the picture"
+  ],
+  "facts": [
+    { "label": "Pieces", "value": "Any number, 2 to 100" },
+    { "label": "Ages", "value": "3 and up" },
+    { "label": "Devices", "value": "iPhone and iPad, iOS 17 or later" },
+    { "label": "Price", "value": "Free with a few pictures; a one-time in-app purchase unlocks the rest" },
+    { "label": "Subscription", "value": "None" },
+    { "label": "Ads", "value": "None" },
+    { "label": "Tracking", "value": "None. The app has no network code at all" },
+    { "label": "Accounts", "value": "None needed" },
+    { "label": "Internet", "value": "Not needed to play" },
+    { "label": "Grown-ups' gate", "value": "On settings and purchases" },
+    { "label": "Saves progress", "value": "Automatically, on the device" },
+    { "label": "Language", "value": "English" }
+  ],
+  "accessibility": "Menus and buttons work with VoiceOver, and the game respects Reduce Motion. Dragging pieces isn't yet possible with VoiceOver, text sizes are fixed, and the app is light mode only. We're working on it.",
+  "privacy": {
+    "stored": [
+      "Your puzzle in progress: the picture, the piece count, a number that recreates the cut, and where the pieces are",
+      "Finished puzzles, so the library can show what's been completed",
+      "Settings chosen in the grown-ups' area, such as sounds and helpers",
+      "Whether the full library has been unlocked (Apple's StoreKit keeps the purchase record)"
+    ],
+    "notes": [
+      "None of this leaves the device. The app contains no network code, so it can't send anything to us or anyone else.",
+      "Progress isn't synced between devices, and we have no copy of it.",
+      "Deleting the app deletes everything it stored. A purchase stays with the Apple Account and can be restored."
+    ]
+  },
+  "faq": [
+    {
+      "id": "getting-started",
+      "group": "Getting started",
+      "q": "How do I start a puzzle?",
+      "a": "Open the app, tap a picture, choose the number of pieces with the slider or a shortcut, and tap Play. There's no sign-up and nothing to set up first."
+    },
+    {
+      "id": "piece-count",
+      "group": "Playing",
+      "q": "Can it really cut any number of pieces?",
+      "a": "Yes. Every whole number from 2 to 100 works, including awkward ones like 7, 13 and 97. Each puzzle is checked before you play, so it always has exactly the number you chose."
+    },
+    {
+      "id": "too-hard",
+      "group": "Playing",
+      "q": "It's too hard (or too easy). What can we change?",
+      "a": "Change the piece count first: it's the biggest lever. Then, in the grown-ups' area, switch on helpers such as the picture guide, piece outlines, edge pieces first, snap into place and return pieces that don't fit."
+    },
+    {
+      "id": "tray",
+      "group": "Playing",
+      "q": "Where are the rest of the pieces?",
+      "a": "On bigger puzzles (over 24 pieces on iPhone, over 40 on iPad) loose pieces wait in a tray. Tap or drag a piece out of the tray; drag it back to return it."
+    },
+    {
+      "id": "zoom",
+      "group": "Playing",
+      "q": "Can we zoom in?",
+      "a": "Yes. Pinch to zoom is a grown-ups' setting and is off by default, so little hands don't zoom by accident. Turn it on in the grown-ups' area."
+    },
+    {
+      "id": "saving",
+      "group": "Saving and progress",
+      "q": "Does it save our puzzle?",
+      "a": "Yes, automatically: after every move, every 20 seconds and whenever you leave the app. Tap Continue on the home screen to pick up where you left off."
+    },
+    {
+      "id": "other-device",
+      "group": "Saving and progress",
+      "q": "Can we carry on on another iPhone or iPad?",
+      "a": "Not at the moment. Progress is saved only on the device you're playing on, and we never receive a copy. The unlock does carry over: see restoring a purchase."
+    },
+    {
+      "id": "whats-free",
+      "group": "Buying and restoring",
+      "q": "What's free, and what does the unlock cost?",
+      "a": "The game and a few pictures are free. One in-app purchase, bought once, unlocks every other picture. It isn't a subscription. The price is shown on the App Store in your currency before you buy. Everything the unlock includes stays unlocked in future updates. If we add new features later, some may cost extra, but that will always be clearly marked and your choice."
+    },
+    {
+      "id": "restore",
+      "group": "Buying and restoring",
+      "q": "We already paid. How do I restore the unlock?",
+      "a": "Open the grown-ups' area, tap Unlock all puzzles under Purchases, then tap Restore purchase. Make sure the device is signed in to the same Apple Account that bought it."
+    },
+    {
+      "id": "ask-to-buy",
+      "group": "Buying and restoring",
+      "q": "Does it work with Ask to Buy and Family Sharing?",
+      "a": "Yes. With Ask to Buy, the request goes to the family organiser and the unlock appears once it's approved. If Family Sharing is on for purchases, the unlock is shared with your family group."
+    },
+    {
+      "id": "refund",
+      "group": "Buying and restoring",
+      "q": "How do I get a refund?",
+      "a": "Apple handles all payments and refunds, so we can't issue them ourselves. Request one at <a href=\"https://reportaproblem.apple.com\">reportaproblem.apple.com</a>, signed in with the Apple Account that made the purchase."
+    },
+    {
+      "id": "gift",
+      "group": "Gifts and codes",
+      "q": "Can I give it as a gift?",
+      "a": "The game itself is free to download. To cover the unlock, send an Apple Gift Card: the person you give it to can spend it on the unlock. We don't sell codes on this website, so be wary of anyone else selling them."
+    },
+    {
+      "id": "redeem",
+      "group": "Gifts and codes",
+      "q": "I've been given a code. How do I redeem it?",
+      "a": "In the game, open the grown-ups' area, tap Unlock all puzzles under Purchases, then tap Redeem a code. Or open the App Store, tap your profile picture at the top, then tap Redeem Gift Card or Code. Each code works once."
+    },
+    {
+      "id": "gate",
+      "group": "The grown-ups' gate",
+      "q": "What's the grown-ups' gate?",
+      "a": "Settings and purchases sit behind a times-table question written in words, answered on a keypad. Two wrong answers close the gate for 30 seconds. It keeps little ones out of the settings and stops accidental purchases."
+    },
+    {
+      "id": "data",
+      "group": "Privacy and safety",
+      "q": "What does the app collect about my child?",
+      "a": "Nothing. There are no ads, no analytics, no accounts and no network code. Puzzle progress and settings stay on the device. The full detail is in our <a href=\"/privacy/#jigsaw-puzzles\">privacy policy</a>."
+    },
+    {
+      "id": "devices",
+      "group": "Devices and accessibility",
+      "q": "Which devices does it run on?",
+      "a": "iPhone and iPad with iOS 17 or later. It works in portrait and landscape, and bigger puzzles are easier on an iPad."
+    },
+    {
+      "id": "accessibility",
+      "group": "Devices and accessibility",
+      "q": "Does it work with VoiceOver?",
+      "a": "Menus and buttons do, and the game respects Reduce Motion. Dragging pieces isn't yet possible with VoiceOver, and text sizes are fixed. If this matters for your family, tell us: it helps us decide what to fix first."
+    },
+    {
+      "id": "something-wrong",
+      "group": "Devices and accessibility",
+      "q": "Something isn't working. What should I do?",
+      "a": "First make sure the app is up to date in the App Store. If it still happens, email us with your device (for example \"iPad 10th generation\"), the iOS version from Settings › General › About, and what happened just before."
+    }
+  ],
+  "topQuestions": ["piece-count", "whats-free", "restore", "data", "gift"]
+}

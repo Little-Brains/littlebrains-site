@@ -1,0 +1,11 @@
+---
+// Jigsaw cut lines drawn over a picture. Shadow first, then the paper-coloured cut.
+import { cutPath } from '../lib/jigsaw';
+interface Props { n: number; w: number; h: number; seed?: number; id?: string }
+const { n, w, h, seed = 7, id } = Astro.props;
+const d = cutPath(n, w, h, seed);
+---
+<svg id={id} viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <path class="cut-shadow" d={d} fill="none" stroke="rgba(43,35,64,0.26)" stroke-width="3.4" transform="translate(0.8,1.2)" vector-effect="non-scaling-stroke" />
+  <path class="cut-line" d={d} fill="none" stroke="rgba(255,253,248,0.9)" stroke-width="2" vector-effect="non-scaling-stroke" />
+</svg>
